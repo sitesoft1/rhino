@@ -1,0 +1,42 @@
+<span>Продукт:</span> [textarea text-949 id:procheck placeholder "Выберите продукт"]
+<span>Тип:</span> [text text-950 id:typecheck]
+
+<div class="line-ckeck">
+   <div class="lcl">
+     <span>Кол-во:</span>
+     <div class="quantity">[number number-711 min:1 max:20 step:1 id:col "1"]</div>
+   </div>
+   <div class="rcl">
+     <span>Итого:</span>[text text-951 id:sumcheck]
+   </div>
+   <div class="rcl nds">
+     <span>Итого с НДС:</span>[text text-871 id:ndscheck]
+   </div>
+</div>
+
+<span>Ф.И.О.* (обязательно)</span>[text* text-138 id:custname class:borderbottom]
+<span>Электронная почта* (обязательно)</span>[email* email-482 id:custmail class:borderbottom]
+<span>Телефон* (обязательно)</span>[tel* tel-53 id:custphone class:borderbottom]
+<div id="needscan" style="display:none;">
+  <span>Скан-копия документа*<br>
+    <a href="/wp-content/uploads/2019/04/Dokumenty-dlya-polucheniya-akademicheskoj-litsenzii-Rhino.pdf" target="_blank">Требования к документам</a>
+  </span>[file file-195 id:scanfile class:borderbottom]
+</div>
+
+<!--<span>Вариант оплаты:</span>[select menu-600 id:oplata "Безналичная оплата|cashless" "Рассрочка без переплат|credit"]-->
+<span>Вариант оплаты:</span>[select menu-600 id:oplata "Банковская карта|card" "Безналичная оплата|cashless" "Рассрочка без переплат|credit"]
+<!-- PROMO -->
+<div id="promo">
+     <input id="is_promo" type="checkbox" name="is_promo"><label id="label_is_promo" for="is_promo">У меня есть промокод</label>
+</div>
+<div id="promo_wrap">
+     <input type="text" id="promo_code" name="promo_code" value="" size="40" class="wpcf7-text borderbottom promo_code">
+     <a id="promo_btn" class="btn btn-xs btn-outline btn-primary promo_code">OK</a>
+</div>
+<!-- PROMO END -->
+
+<div style="display:none;" id="cf_buy" class="btn buy-check">Купить</div>
+<div class="contact-form">
+  <span class="dop">Дополнительная информация</span>[textarea textarea-763 id:requizity]
+  <button  id="send_button" class="btn">Оплатить</button>
+</div>

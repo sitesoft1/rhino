@@ -673,6 +673,7 @@ jQuery('.quantity').each(function () {
 			jQuery('.nds').removeClass('nds-hide');
 			clc_price = ndssum * col;
 		}else{
+			jQuery('#ndscheck').val('');
 			jQuery('.nds').addClass('nds-hide');
 			clc_price = sum * col;
 		}
@@ -779,6 +780,7 @@ jQuery('.quantity').each(function () {
 			jQuery('.nds').removeClass('nds-hide');
 			clc_price = ndssum * col;
 		}else{
+			jQuery('#ndscheck').val('');
 			jQuery('.nds').addClass('nds-hide');
 			clc_price = sum * col;
 		}
@@ -823,18 +825,24 @@ jQuery('.quantity').each(function () {
 
 jQuery(document).ready(function () {
 	jQuery('#oplata').on('change', () => {
-		let value = jQuery('#oplata option:selected').text();
-		if (value == 'Кредит без переплат') {
+		var oplata_type = jQuery('#oplata').val();
+
+		//let value = jQuery('#oplata option:selected').text();
+		if (oplata_type == 'credit') {
 			jQuery('#raswrapper').show(200);
 			jQuery('.contact-form').hide(200);
 		} else {
 			jQuery('#raswrapper').hide(200);
 		}
 
-		var oplata_type = jQuery('#oplata').val();
 		if (oplata_type == 'cashless') {
 			jQuery('.nds').removeClass('nds-hide');
+			var sumcheck_val = jQuery('#sumcheck').val();
+			var sumcheck_price = sumcheck_val.replace(/[^\d;]/g, '');
+			var nds_price = sumcheck_price * 1.2;
+			jQuery('#ndscheck').val(nds_price + ' р.');
 		}else{
+			jQuery('#ndscheck').val('');
 			jQuery('.nds').addClass('nds-hide');
 		}
 	});
@@ -886,6 +894,7 @@ jQuery(document).ready(function () {
 			jQuery('#rbkbutton').show();
 			//jQuery('#send_button').hide();
 		}
+
 		if (oplata_types == 'cashless') {
 			// jQuery('#cf_buy').show();
 			jQuery('#rbkbutton').hide();
@@ -899,6 +908,7 @@ jQuery(document).ready(function () {
 		}else{
 			jQuery('.nds').addClass('nds-hide');
 		}
+
 		if (oplata_types == 'credit') {
 			// jQuery('#cf_buy').show();
 			jQuery('#rbkbutton').hide();
@@ -928,8 +938,13 @@ jQuery(document).ready(function () {
 		if (/^\d+$/.test(sum) == false) sum = 0;
 		jQuery('#procheck').val(product);
 		jQuery('#sumcheck').val(sum + ' p.');
-		var ndssum = sum * 1.2;
-		jQuery('#ndscheck').val(ndssum + ' p.');
+		if (oplata_types == 'cashless') {
+			var ndssum = sum * 1.2;
+			jQuery('#ndscheck').val(ndssum + ' p.');
+		}else{
+			jQuery('#ndscheck').val('');
+		}
+
 		var type = jQuery(this).attr('data-type');
 		var link = jQuery(this).attr('data-link');
 		jQuery('#hid').val(link);
